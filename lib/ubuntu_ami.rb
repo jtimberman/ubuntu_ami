@@ -36,12 +36,17 @@ class UbuntuAmi
     region.gsub(/-1/,'').gsub(/-/,'_')
   end
 
+  def virtualization_type(line)
+    virtualization = line.split[8..9].last
+    "_#{virtualization}" if virtualization != "paravirtual"
+  end
+
   def run
     amis = {}
     open(@uri).each do |a|
       key = a.split[4..6]
       ami = a.split[7]
-      amis["#{region_fix(key[2])}_#{arch_size(key[1])}#{disk_store(key[0])}"] = ami
+      amis["#{region_fix(key[2])}_#{arch_size(key[1])}#{disk_store(key[0])}#{virtualization_type(a)}"] = ami
     end
     amis
   end
