@@ -1,0 +1,16 @@
+lucid	server	release	20110201.1	ebs	amd64	ap-southeast-1	ami-f092eca2	aki-11d5aa43		paravirtual
+lucid	server	release	20110201.1	ebs	i386	ap-southeast-1	ami-f292eca0	aki-13d5aa41		paravirtual
+lucid	server	release	20110201.1	instance-store	amd64	ap-southeast-1	ami-c692ec94	aki-11d5aa43		paravirtual
+lucid	server	release	20110201.1	instance-store	i386	ap-southeast-1	ami-2492ec76	aki-13d5aa41		paravirtual
+lucid	server	release	20110201.1	ebs	amd64	eu-west-1	ami-3d1f2b49	aki-4feec43b		paravirtual
+lucid	server	release	20110201.1	ebs	i386	eu-west-1	ami-311f2b45	aki-4deec439		paravirtual
+lucid	server	release	20110201.1	instance-store	amd64	eu-west-1	ami-631f2b17	aki-4feec43b		paravirtual
+lucid	server	release	20110201.1	instance-store	i386	eu-west-1	ami-a11e2ad5	aki-4deec439		paravirtual
+lucid	server	release	20110201.1	ebs	amd64	us-east-1	ami-3202f25b	aki-427d952b		paravirtual
+lucid	server	release	20110201.1	ebs	i386	us-east-1	ami-3e02f257	aki-407d9529		paravirtual
+lucid	server	release	20110201.1	instance-store	amd64	us-east-1	ami-fa01f193	aki-427d952b		paravirtual
+lucid	server	release	20110201.1	instance-store	i386	us-east-1	ami-7000f019	aki-407d9529		paravirtual
+lucid	server	release	20110201.1	ebs	amd64	us-west-1	ami-f5bfefb0	aki-9ba0f1de		paravirtual
+lucid	server	release	20110201.1	ebs	i386	us-west-1	ami-ebbfefae	aki-99a0f1dc		paravirtual
+lucid	server	release	20110201.1	instance-store	amd64	us-west-1	ami-e1bfefa4	aki-9ba0f1de		paravirtual
+lucid	server	release	20110201.1	instance-store	i386	us-west-1	ami-19bfef5c	aki-99a0f1dc		paravirtual

@@ -51,3 +51,22 @@ class UbuntuAmi
     amis
   end
 end
+
+
+class Ubuntu
+  attr_reader :release_name
+
+  def self.release(release_name)
+    new(release_name)
+  end
+
+  def initialize(release_name)
+    @release_name = release_name
+  end
+
+  def amis
+    require 'open-uri'
+    lucid_content = open("http://uec-images.ubuntu.com/query/#{release_name}/server/released.current.txt")
+    lucid_content.map {|line| line.split[7] }.sort
+  end
+end
