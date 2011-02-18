@@ -67,6 +67,25 @@ class Ubuntu
   def amis
     require 'open-uri'
     lucid_content = open("http://uec-images.ubuntu.com/query/#{release_name}/server/released.current.txt")
-    lucid_content.map {|line| line.split[7] }.sort
+    lucid_content.map do |line|
+      Ami.new(
+              line.split[7],
+              line.split[4],
+              line.split[5],
+              line.split[6],
+              line.split[9])
+    end
+  end
+
+  class Ami
+    attr_reader :name, :root_store, :arch, :region, :virtualization_type
+
+    def initialize(name, root_store, arch, region, virtualization_type)
+      @name = name
+      @root_store = root_store
+      @arch = arch
+      @region = region
+      @virtualization_type = virtualization_type
+    end
   end
 end
