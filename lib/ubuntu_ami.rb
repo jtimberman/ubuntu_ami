@@ -1,5 +1,5 @@
 #
-# Author:: Joshua Timberman (<joshua@opscode.com>)
+# Author:: Joshua Timberman (<joshua@opscode.com>), Michael Hale (<mike@hales.ws>)
 # Description:: Retrieves AMI information from Canonical's AMI release list.
 #
 # Copyright:: 2011, Joshua Timberman
