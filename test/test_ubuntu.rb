@@ -17,7 +17,7 @@ def open(url)
   __open__("#{base_dir}/data/#{path}")
 end
 
-class TestLucid < Test::Unit::TestCase
+class TestUbuntu < Test::Unit::TestCase
   include TestHelper
 
   def test_find
