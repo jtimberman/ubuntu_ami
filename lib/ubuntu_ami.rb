@@ -73,7 +73,7 @@ class Ubuntu
               line.split[4],
               line.split[5],
               line.split[6],
-              line.split[9])
+              line.split[8..9].last)
     end
   end
 

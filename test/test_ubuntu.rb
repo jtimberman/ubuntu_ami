@@ -30,6 +30,15 @@ class TestUbuntu < Test::Unit::TestCase
     assert_equal "ami-fa01f193", ami.name
   end
 
+  def test_virtualization_type
+    ami = Ubuntu.release("natty").amis.find do |ami|
+      ami.virtualization_type == "hvm"
+    end
+
+    assert_equal "ami-0601f16f", ami.name
+    assert_equal "paravirtual", Ubuntu.release("natty").amis.first.virtualization_type
+  end
+
   def test_ami_attributes
     ami = Ubuntu.release("lucid").amis.first
     assert_equal "ami-f092eca2", ami.name
