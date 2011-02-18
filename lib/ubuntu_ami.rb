@@ -16,48 +16,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'pp'
 require 'open-uri'
-
-class UbuntuAmi
-  def initialize(release)
-    @uri = "http://uec-images.ubuntu.com/query/#{release}/server/released.current.txt"
-  end
-
-  def arch_size(arch)
-    arch =~ /amd64/ ? "large" : "small"
-  end
-
-  def disk_store(store)
-    "_ebs" if store =~ /ebs/
-  end
-
-  def region_fix(region)
-    region.gsub(/-1/,'').gsub(/-/,'_')
-  end
-
-  def virtualization_type(line)
-    virtualization = line.split[8..9].last
-    "_#{virtualization}" if virtualization != "paravirtual"
-  end
-
-  def run
-    amis = {}
-    open(@uri).each do |a|
-      key = a.split[4..6]
-      ami = a.split[7]
-      amis["#{region_fix(key[2])}_#{arch_size(key[1])}#{disk_store(key[0])}#{virtualization_type(a)}"] = ami
-    end
-    amis
-  end
-end
-
 
 class Ubuntu
   attr_reader :release_name
 
   def self.release(release_name)
-    new(release_name)
+    instance_for_release(release_name)
+  end
+
+  def self.instance_for_release(release_name)
+    @releases ||= {}
+    @releases[release_name] ||= new(release_name)
   end
 
   def initialize(release_name)
@@ -65,9 +35,7 @@ class Ubuntu
   end
 
   def amis
-    require 'open-uri'
-    lucid_content = open("http://uec-images.ubuntu.com/query/#{release_name}/server/released.current.txt")
-    lucid_content.map do |line|
+    content.map do |line|
       Ami.new(
               line.split[7],
               line.split[4],
@@ -75,6 +43,14 @@ class Ubuntu
               line.split[6],
               line.split[8..9].last)
     end
+  end
+
+  def url
+    "http://uec-images.ubuntu.com/query/#{release_name}/server/released.current.txt"
+  end
+
+  def content
+    @content ||= open(url).read.split("\n")
   end
 
   class Ami
