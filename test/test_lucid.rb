@@ -20,6 +20,16 @@ end
 class TestLucid < Test::Unit::TestCase
   include TestHelper
 
+  def test_find
+    ami = Ubuntu.release("lucid").amis.find do |ami|
+      ami.arch == "amd64" and
+        ami.root_store == "instance-store" and
+        ami.region == "us-east-1"
+    end
+
+    assert_equal "ami-fa01f193", ami.name
+  end
+
   def test_ami_attributes
     ami = Ubuntu.release("lucid").amis.first
     assert_equal "ami-f092eca2", ami.name
