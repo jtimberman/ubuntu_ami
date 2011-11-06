@@ -1,5 +1,5 @@
 #
-# Author:: Joshua Timberman (<joshua@opscode.com>)
+# Author:: Joshua Timberman (<joshua@opscode.com>), Michael Hale (<mike@hales.ws>)
 # Description:: Retrieves AMI information from Canonical's AMI release list.
 #
 # Copyright:: 2011, Joshua Timberman
@@ -16,33 +16,52 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'pp'
 require 'open-uri'
 
-class UbuntuAmi
-  def initialize(release)
-    @uri = "http://uec-images.ubuntu.com/query/#{release}/server/released.current.txt"
+class Ubuntu
+  attr_reader :release_name
+
+  def self.release(release_name)
+    instance_for_release(release_name)
   end
 
-  def arch_size(arch)
-    arch =~ /amd64/ ? "large" : "small"
+  def self.instance_for_release(release_name)
+    @releases ||= {}
+    @releases[release_name] ||= new(release_name)
   end
 
-  def disk_store(store)
-    "_ebs" if store =~ /ebs/
+  def initialize(release_name)
+    @release_name = release_name
   end
 
-  def region_fix(region)
-    region.gsub(/-1/,'').gsub(/-/,'_')
-  end
-
-  def run
-    amis = {}
-    open(@uri).each do |a|
-      key = a.split[4..6]
-      ami = a.split[7]
-      amis["#{region_fix(key[2])}_#{arch_size(key[1])}#{disk_store(key[0])}"] = ami
+  def amis
+    content.map do |line|
+      Ami.new(
+              line.split[7],
+              line.split[4],
+              line.split[5],
+              line.split[6],
+              line.split[8..9].last)
     end
-    amis
+  end
+
+  def url
+    "http://uec-images.ubuntu.com/query/#{release_name}/server/released.current.txt"
+  end
+
+  def content
+    @content ||= open(url).read.split("\n")
+  end
+
+  class Ami
+    attr_reader :name, :root_store, :arch, :region, :virtualization_type
+
+    def initialize(name, root_store, arch, region, virtualization_type)
+      @name = name
+      @root_store = root_store
+      @arch = arch
+      @region = region
+      @virtualization_type = virtualization_type
+    end
   end
 end

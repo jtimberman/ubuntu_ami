@@ -1,0 +1,17 @@
+natty	server	alpha2	20110202	ebs	amd64	ap-southeast-1	ami-ca92ec98	aki-11d5aa43		paravirtual
+natty	server	alpha2	20110202	ebs	i386	ap-southeast-1	ami-c492ec96	aki-13d5aa41		paravirtual
+natty	server	alpha2	20110202	instance-store	amd64	ap-southeast-1	ami-d492ec86	aki-11d5aa43		paravirtual
+natty	server	alpha2	20110202	instance-store	i386	ap-southeast-1	ami-2092ec72	aki-13d5aa41		paravirtual
+natty	server	alpha2	20110202	ebs	amd64	eu-west-1	ami-571f2b23	aki-4feec43b		paravirtual
+natty	server	alpha2	20110202	ebs	i386	eu-west-1	ami-6b1f2b1f	aki-4deec439		paravirtual
+natty	server	alpha2	20110202	instance-store	amd64	eu-west-1	ami-8f1e2afb	aki-4feec43b		paravirtual
+natty	server	alpha2	20110202	instance-store	i386	eu-west-1	ami-cd1e2ab9	aki-4deec439		paravirtual
+natty	server	alpha2	20110202	ebs	amd64	us-east-1	ami-0201f16b	aki-427d952b		paravirtual
+natty	server	alpha2	20110202	ebs	i386	us-east-1	ami-0e01f167	aki-407d9529		paravirtual
+natty	server	alpha2	20110202	ebs	amd64	us-east-1	ami-0601f16f			hvm
+natty	server	alpha2	20110202	instance-store	amd64	us-east-1	ami-8800f0e1	aki-427d952b		paravirtual
+natty	server	alpha2	20110202	instance-store	i386	us-east-1	ami-ce1fefa7	aki-407d9529		paravirtual
+natty	server	alpha2	20110202	ebs	amd64	us-west-1	ami-cbbfef8e	aki-9ba0f1de		paravirtual
+natty	server	alpha2	20110202	ebs	i386	us-west-1	ami-c9bfef8c	aki-99a0f1dc		paravirtual
+natty	server	alpha2	20110202	instance-store	amd64	us-west-1	ami-c3bfef86	aki-9ba0f1de		paravirtual
+natty	server	alpha2	20110202	instance-store	i386	us-west-1	ami-17bfef52	aki-99a0f1dc		paravirtual
