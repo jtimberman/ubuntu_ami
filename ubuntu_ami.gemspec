@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'ubuntu_ami'
-  s.version = '0.2'
+  s.version = '0.3'
   s.platform = Gem::Platform::RUBY
   s.summary = "Retrieves AMI information from Canonical's Ubuntu release list."
   s.description = s.summary
