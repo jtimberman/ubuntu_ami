@@ -1,5 +1,5 @@
-#
 # Author:: Joshua Timberman (<joshua@housepub.org>)
+# Description:: Retrieves AMI information from Canonical's AMI release list.
 #
 # Copyright:: 2011, Joshua Timberman
 #
@@ -15,26 +15,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require File.dirname(__FILE__) + '/lib/ubuntu_ami/version'
-
-require 'rubygems'
-require 'rubygems/package_task'
-
-require 'rake/testtask'
-task :default => :test
-Rake::TestTask.new
-
-GEM_NAME = 'ubuntu_ami'
-spec = eval(File.read("ubuntu_ami.gemspec"))
-
-Gem::PackageTask.new(spec) do |pkg|
-  pkg.gem_spec = spec
-end
-
-task :install => :package do
-  sh %{gem install pkg/#{GEM_NAME}-#{Ubuntu::Ami::VERSION} --no-rdoc --no-ri}
-end
-
-task :uninstall => :package do
-  sh %{gem uninstall #{GEM_NAME} -x -v #{Ubuntu::Ami::VERSION}}
+class Ubuntu
+  class Ami
+    VERSION = '0.4.0'
+  end
 end
