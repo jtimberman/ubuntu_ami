@@ -20,6 +20,7 @@ require File.dirname(__FILE__) + '/lib/ubuntu_ami/version'
 require 'rubygems'
 require 'rubygems/package_task'
 
+require 'rake/rdoctask'
 require 'rake/testtask'
 task :default => :test
 Rake::TestTask.new
@@ -37,4 +38,13 @@ end
 
 task :uninstall => :package do
   sh %{gem uninstall #{GEM_NAME} -x -v #{Ubuntu::Ami::VERSION}}
+end
+
+Rake::RDocTask.new do |rdoc|
+  rdoc.title = 'UbuntuAMI API documentation'
+  rdoc.main = 'README.md'
+  rdoc.options << '--fmt' << 'shtml'
+  rdoc.template = 'direct'
+  rdoc.rdoc_files.include("README.md", "LICENSE", "lib/**/*.rb")
+  rdoc.rdoc_dir = 'rdoc'
 end

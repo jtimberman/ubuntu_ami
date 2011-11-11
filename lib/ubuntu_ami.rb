@@ -34,6 +34,10 @@ class Ubuntu
     @release_name = release_name
   end
 
+  # Map the output from Canonical's image list.
+  #
+  # === Returns
+  # Array:: An array of Ubuntu::Ami objects.
   def amis
     content.map do |line|
       Ami.new(
@@ -45,10 +49,22 @@ class Ubuntu
     end
   end
 
+  # The URL of Canonical's current released AMIs for the given
+  # release.
+  #
+  # Visit "http://uec-images.ubuntu.com/query" to get a list of
+  # available releases.
+  #
+  # === Returns
+  # String:: The full URL to the released AMIs.
   def url
     "http://uec-images.ubuntu.com/query/#{release_name}/server/released.current.txt"
   end
 
+  # Reads the URL for processing.
+  # === Exception
+  # Raises an exception if the release name was not specified or was
+  # not found.
   def content
     begin
       @content ||= open(url).read.split("\n")
@@ -57,6 +73,7 @@ class Ubuntu
     end
   end
 
+  # Provides accessors for the properties of the AMI list.
   class Ami
     attr_reader :name, :root_store, :arch, :region, :virtualization_type
 
