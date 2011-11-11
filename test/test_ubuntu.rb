@@ -20,6 +20,14 @@ end
 class TestUbuntu < Test::Unit::TestCase
   include TestHelper
 
+  def test_release
+    assert_raise(ArgumentError) { Ubuntu.release() }
+  end
+
+  def test_content
+    assert_raise(RuntimeError) { Ubuntu.release("").content }
+  end
+
   def test_find
     ami = Ubuntu.release("lucid").amis.find do |ami|
       ami.arch == "amd64" and

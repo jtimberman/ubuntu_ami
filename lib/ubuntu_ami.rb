@@ -1,5 +1,5 @@
 #
-# Author:: Joshua Timberman (<joshua@opscode.com>), Michael Hale (<mike@hales.ws>)
+# Author:: Joshua Timberman (<joshua@housepub.org>), Michael Hale (<mike@hales.ws>)
 # Description:: Retrieves AMI information from Canonical's AMI release list.
 #
 # Copyright:: 2011, Joshua Timberman
@@ -50,7 +50,11 @@ class Ubuntu
   end
 
   def content
-    @content ||= open(url).read.split("\n")
+    begin
+      @content ||= open(url).read.split("\n")
+    rescue
+      raise "Could not find AMI list for distro release '#{release_name}', did you specify it correctly? (e.g., 'lucid')"
+    end
   end
 
   class Ami
