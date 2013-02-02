@@ -20,7 +20,7 @@ require File.dirname(__FILE__) + '/lib/ubuntu_ami/version'
 require 'rubygems'
 require 'rubygems/package_task'
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 require 'rake/testtask'
 task :default => :test
 Rake::TestTask.new
