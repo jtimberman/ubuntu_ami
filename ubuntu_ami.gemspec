@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/jtimberman/ubuntu_ami"
   s.require_path = 'lib'
   s.files = %w(LICENSE README.md) + Dir.glob("lib/**/*")
+  s.executables = ["ubuntu_ami"]
 end

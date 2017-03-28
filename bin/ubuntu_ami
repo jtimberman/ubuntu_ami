@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'ubuntu_ami'))
+
+default_release = 'lucid'
+
+if %w(-h --help).include?(ARGV.first)
+  puts %{Retrieves Ubuntu AMI information from Canonicals release list
+
+USAGE: ubuntu_ami [RELEASE [TYPE]]
+RELEASE is the name of the ubuntu release. Default is #{default_release}.
+TYPE is the region, architecture, and storage type of the AMI.
+
+Examples:
+
+  ubuntu_ami
+  ubuntu_ami #{default_release}
+  # Print all Lucid AMIs
+
+  ubuntu_ami natty us_east_large_ebs
+  # Print the Natty 64-bit EBS-based AMI in US East
+
+  ubuntu_ami natty ap_northeast_small
+  # Print the Natty 32-bit instance store-based AMI in AP Northeast
+}
+  exit 0
+end
+
+release = ARGV[0] || default_release
+type    = ARGV[1]
+
+data = UbuntuAmi.new(release).run
+if type
+  if data[type]
+    puts data[type]
+  else
+    raise ArgumentError.new "Unknown type #{type}"
+  end
+else
+  # Print all AMIs, sorted by type
+  puts data.to_a.sort_by{|ary| ary.first}.map{|type, ami| "#{ami} #{type}"}
+end
