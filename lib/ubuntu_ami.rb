@@ -67,7 +67,7 @@ class Ubuntu
   # not found.
   def content
     begin
-      @content ||= open(url).read.split("\n")
+      @content ||= ::OpenURI.open_uri(url).read.split("\n")
     rescue
       raise "Could not find AMI list for distro release '#{release_name}', did you specify it correctly? (e.g., 'lucid')"
     end
