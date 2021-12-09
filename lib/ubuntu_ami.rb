@@ -58,7 +58,7 @@ class Ubuntu
   # === Returns
   # String:: The full URL to the released AMIs.
   def url
-    "http://uec-images.ubuntu.com/query/#{release_name}/server/released.current.txt"
+    "http://cloud-images.ubuntu.com/query/#{release_name}/server/released.current.txt"
   end
 
   # Reads the URL for processing.
